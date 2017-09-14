@@ -19,5 +19,4 @@ public class DAOUsuario {
 		//la consulta se realiza a la bdd
 		return true;
 	}
-
 }

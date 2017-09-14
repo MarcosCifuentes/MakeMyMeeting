@@ -49,5 +49,4 @@ public class Sala {
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
-	
 }
