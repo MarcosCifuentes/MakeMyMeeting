@@ -1,18 +1,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>MakeMyMeeting2</groupId>
-	<artifactId>MakeMyMeeting2</artifactId>
+	<groupId>MakeMyMeeting</groupId>
+	<artifactId>MakeMyMeeting</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-
-	<repositories>
-		<repository>
-			<id>central</id>
-			<name>Unicen REPO</name>
-			<url>http://repos.exa.unicen.edu.ar:8081/repository/maven-central/</url>
-		</repository>
-	</repositories>
 
 	<dependencies>
 		<dependency>
