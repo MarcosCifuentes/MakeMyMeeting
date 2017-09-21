@@ -1,14 +1,17 @@
 package entities;
 
-import java.sql.Date;
+import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="Meeting")
 public class Meeting {
 	
 	@Id
@@ -18,24 +21,23 @@ public class Meeting {
 	private Date dateStart;
 	private Date dateEnd;
 	@OneToOne
-	private Site site;
+	private int idSite;
 	private List<User> guests;
 	@OneToOne
-	private Calendar calendar;
+	private int idCalendar;
 	@OneToOne
-	private User host;
+	private int idUser;
 	private boolean personal;
 	private boolean remember;
 	
-	public Meeting(int id, String name, Date dateStart, Date dateEnd, Site site, List<User> guests, Calendar calendar,
-			User host, boolean personal, boolean remember) {
+	public Meeting(String name, Date dateStart, Date dateEnd, int idSite, int idCalendar, int idUser, boolean personal, boolean remember) {
 		this.name = name;
 		this.dateStart = dateStart;
 		this.dateEnd = dateEnd;
-		this.site = site;
-		this.guests = guests;
-		this.calendar = calendar;
-		this.host = host;
+		this.idSite = idSite;
+		this.guests = new ArrayList <User> ();
+		this.idCalendar = idCalendar;
+		this.idUser = idUser;
 		this.personal = personal;
 		this.remember = remember;
 	}
@@ -60,20 +62,20 @@ public class Meeting {
 		return dateEnd;
 	}
 
-	public Site getSite() {
-		return site;
+	public int getSite() {
+		return idSite;
 	}
 
 	public List<User> getGuests() {
 		return guests;
 	}
 
-	public Calendar getCalendar() {
-		return calendar;
+	public int getCalendar() {
+		return idCalendar;
 	}
 
-	public User getHost() {
-		return host;
+	public int getUser() {
+		return idUser;
 	}
 
 	public boolean isPersonal() {
@@ -96,20 +98,20 @@ public class Meeting {
 		this.dateEnd = dateEnd;
 	}
 
-	public void setSite(Site site) {
-		this.site = site;
+	public void setSite(int idSite) {
+		this.idSite = idSite;
 	}
 
 	public void setGuests(List<User> guests) {
 		this.guests = guests;
 	}
 
-	public void setCalendar(Calendar calendar) {
-		this.calendar = calendar;
+	public void setCalendar(int idCalendar) {
+		this.idCalendar = idCalendar;
 	}
 
-	public void setHost(User host) {
-		this.host = host;
+	public void setHost(int idUser) {
+		this.idUser = idUser;
 	}
 
 	public void setPersonal(boolean personal) {
@@ -119,5 +121,12 @@ public class Meeting {
 	public void setRemember(boolean remember) {
 		this.remember = remember;
 	}
+
+	@Override
+	public String toString() {
+		return "Meeting [name=" + name + "]";
+	}
+	
+	
 	
 }

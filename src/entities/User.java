@@ -6,8 +6,10 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="User")
 public class User {
 	
 	@Id
@@ -64,4 +66,10 @@ public class User {
 	public void setInvitations(List<Meeting> invitaciones) {
 		this.invitations = invitaciones;
 	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", name=" + name + ", lastname=" + lastname + ", email=" + email + "]";
+	}
+	
 }
