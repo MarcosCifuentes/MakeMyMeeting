@@ -1,8 +1,10 @@
 package services;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import entities.Site;
+import entities.User;
 
 public class DAOSite {
 	
@@ -22,5 +24,13 @@ public class DAOSite {
 		Site newSite = new Site (name, address);
 		em.persist(newSite);
 		em.getTransaction().commit();
+	}
+	
+	public static Site getSite(int idSite, EntityManager em) {
+		String jpql = "SELECT s FROM Site s WHERE s.id = ?1"; 
+		Query query = em.createQuery(jpql); 
+		query.setParameter(1, idSite);
+		Site site = (Site) query.getSingleResult();
+		return site;
 	}
 }

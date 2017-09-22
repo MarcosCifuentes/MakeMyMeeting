@@ -4,10 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
-import javax.persistence.Table;
 
 @Entity
-@Table(name="Calendar")
 public class Calendar {
 	
 	@Id
@@ -15,11 +13,11 @@ public class Calendar {
 	private int id;
 	private String name;
 	@OneToOne
-	private int idUser;
+	private User user;
 	
-	public Calendar(String name, int idUser) {
+	public Calendar(String name, User user) {
 		this.name = name;
-		this.idUser = idUser;
+		this.user = user;
 	}
 
 	public int getId() {
@@ -38,12 +36,12 @@ public class Calendar {
 		this.name = name;
 	}
 
-	public int getUser() {
-		return idUser;
+	public User getUser() {
+		return user;
 	}
 
-	public void setUser(int idUser) {
-		this.idUser = idUser;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 

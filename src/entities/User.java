@@ -6,10 +6,9 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.ManyToMany;
 
 @Entity
-@Table(name="User")
 public class User {
 	
 	@Id
@@ -18,6 +17,7 @@ public class User {
 	private String name;
 	private String lastname;
 	private String email;
+	@ManyToMany(mappedBy ="guests")
 	private List<Meeting> invitations;
 
 	public User(String name, String lastname, String email) {

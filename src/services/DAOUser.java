@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import entities.Meeting;
+import entities.Site;
 import entities.User;
 
 public class DAOUser {
@@ -28,8 +29,17 @@ public class DAOUser {
 		em.persist(newUser);
 		em.getTransaction().commit();
 	}
+	
+	public static User getUser(int idUser, EntityManager em) {
+		String jpql = "SELECT u FROM User u WHERE u.id = ?1"; 
+		Query query = em.createQuery(jpql); 
+		query.setParameter(1, idUser);
+		User user = (User) query.getSingleResult();
+		return user;
+	}
 
-	public static void getUser(int idUser, EntityManager em) {
+
+	public static void getUserData(int idUser, EntityManager em) {
 		em.getTransaction( ).begin( );
 		String jpql = "SELECT u FROM User u"; 
 		Query query = em.createQuery(jpql); 

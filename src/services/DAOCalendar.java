@@ -1,8 +1,10 @@
 package services;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import entities.Calendar;
+import entities.User;
 
 public class DAOCalendar {
 	
@@ -19,8 +21,16 @@ public class DAOCalendar {
 	
 	public static void createCalendar(String name, int idUser, EntityManager em) {
 		em.getTransaction( ).begin( );
-		Calendar newCalendar = new Calendar (name, idUser);
+		User user = DAOUser.getUser(idUser, em);
+		Calendar newCalendar = new Calendar (name, user);
 		em.persist(newCalendar);
 		em.getTransaction().commit();
+	}
+	
+	public static Calendar getCalendar(int idCalendar, EntityManager em) {
+		String jpql = "SELECT c FROM Calendar c"; 
+		Query query = em.createQuery(jpql); 
+		Calendar calendar = (Calendar) query.getSingleResult();
+		return calendar;
 	}
 }

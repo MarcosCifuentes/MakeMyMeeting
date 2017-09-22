@@ -19,10 +19,10 @@ public class MyApp {
 		DAOUser.createUser(em,"Mateo", "Darin", "mateo@gmail.com");
 		DAOUser.createUser(em,"Lionel", "Messi", "lionel@gmail.com");
 		
-		DAOCalendar.createCalendar("Escolar", 1, em);
+		DAOCalendar.createCalendar("Escolar", 3, em);
 		
-		DAOMeeting.createMeeting("Peña",new Date(100, 12, 25, 10, 00, 00), new Date(100, 12, 25, 12, 00, 00), 1, 1, 1, em);//si
-		DAOMeeting.createMeeting("Morfi",new Date(100, 12, 25, 11, 00, 00), new Date(100, 12, 25, 15, 00, 00), 2,2,2, em);//no xq se superpone
+		DAOMeeting.createMeeting("Peña",new Date(100, 12, 25, 10, 00, 00), new Date(100, 12, 25, 12, 00, 00), 3, 1, 1, em);//si
+		DAOMeeting.createMeeting("Morfi",new Date(100, 12, 25, 11, 00, 00), new Date(100, 12, 25, 15, 00, 00), 4,2,2, em);//no xq se superpone
 		
 //		List<Meeting> reuniones = new ArrayList<Meeting>();
 //		reuniones = DAOMeeting.getMettingByUserAndDay(4, new Date(100, 12, 25, 10, 00, 00), em);
