@@ -27,10 +27,16 @@ public class DAOCalendar {
 		em.getTransaction().commit();
 	}
 	
+//	public static void createDefaultCalendar(String name, int idUser, EntityManager em) {
+//		User user = DAOUser.getUser(idUser, em);
+//		Calendar newCalendar = new Calendar (name, user);
+//		em.persist(newCalendar);
+//	}
+	
 	public static Calendar getCalendar(int idCalendar, EntityManager em) {
-		String jpql = "SELECT c FROM Calendar c"; 
+		String jpql = "SELECT c FROM Calendar c WHERE c.id = ?1"; 
 		Query query = em.createQuery(jpql); 
-		Calendar calendar = (Calendar) query.getSingleResult();
-		return calendar;
+		query.setParameter(1, idCalendar);
+		return (Calendar) query.getSingleResult();
 	}
 }

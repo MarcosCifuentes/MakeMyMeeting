@@ -1,9 +1,13 @@
 package entities;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Calendar {
@@ -12,8 +16,16 @@ public class Calendar {
 	@GeneratedValue
 	private int id;
 	private String name;
-	@OneToOne
+	
+	@ManyToOne(cascade=CascadeType.PERSIST)
 	private User user;
+	
+	@OneToMany(mappedBy="calendar",cascade=CascadeType.PERSIST)
+	private List<Meeting> reuniones;
+	
+	public Calendar() { 
+		
+	}
 	
 	public Calendar(String name, User user) {
 		this.name = name;

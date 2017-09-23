@@ -30,7 +30,7 @@ public class DAOSite {
 		String jpql = "SELECT s FROM Site s WHERE s.id = ?1"; 
 		Query query = em.createQuery(jpql); 
 		query.setParameter(1, idSite);
-		Site site = (Site) query.getSingleResult();
-		return site;
+		return (Site) query.getSingleResult();
+		 
 	}
 }
