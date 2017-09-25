@@ -7,18 +7,18 @@ import entities.Calendar;
 import entities.User;
 
 public class DAOCalendar {
-	
+
 	private static DAOCalendar daoCalendar;
-	
+
 	private DAOCalendar(){
 	}
-	
+
 	public static DAOCalendar getInstance() {
 		if(daoCalendar == null)
 			daoCalendar = new DAOCalendar();
 		return daoCalendar;
 	}
-	
+
 	public static void createCalendar(String name, int idUser, EntityManager em) {
 		em.getTransaction( ).begin( );
 		User user = DAOUser.getUser(idUser, em);
@@ -26,13 +26,7 @@ public class DAOCalendar {
 		em.persist(newCalendar);
 		em.getTransaction().commit();
 	}
-	
-//	public static void createDefaultCalendar(String name, int idUser, EntityManager em) {
-//		User user = DAOUser.getUser(idUser, em);
-//		Calendar newCalendar = new Calendar (name, user);
-//		em.persist(newCalendar);
-//	}
-	
+
 	public static Calendar getCalendar(int idCalendar, EntityManager em) {
 		String jpql = "SELECT c FROM Calendar c WHERE c.id = ?1"; 
 		Query query = em.createQuery(jpql); 

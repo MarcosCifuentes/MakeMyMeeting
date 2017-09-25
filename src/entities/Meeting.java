@@ -20,24 +20,24 @@ public class Meeting {
 	private String name;
 	private Date dateStart;
 	private Date dateEnd;
-	
+
 	@ManyToOne(cascade=CascadeType.PERSIST)
 	private Site site;
-	
-	@ManyToMany(cascade=CascadeType.PERSIST)
-	private List<User> guests;
-	
+
+	//	@ManyToMany(cascade=CascadeType.PERSIST)
+	//	private List<User> guests;
+
 	@ManyToOne(cascade=CascadeType.PERSIST)
 	private Calendar calendar;
-	
+
 	@ManyToOne(cascade=CascadeType.PERSIST)
 	private User user;
-	
+
 	private int personal;
 	private int remember;
-	
+
 	public Meeting() {
-		
+
 	}
 
 	public Meeting(String name, Date dateStart, Date dateEnd, Site site, Calendar calendar, User user, int personal, int remember) {
@@ -45,7 +45,7 @@ public class Meeting {
 		this.dateStart = dateStart;
 		this.dateEnd = dateEnd;
 		this.site = site;
-		this.guests = new ArrayList <User> ();
+		//		this.guests = new ArrayList <User> ();
 		this.calendar = calendar;
 		this.user = user;
 		this.personal = personal;
@@ -94,13 +94,13 @@ public class Meeting {
 		this.site = site;
 	}
 
-	public List<User> getGuests() {
-		return guests;
-	}
-
-	public void setGuests(List<User> guests) {
-		this.guests = guests;
-	}
+	//	public List<User> getGuests() {
+	//		return guests;
+	//	}
+	//
+	//	public void setGuests(List<User> guests) {
+	//		this.guests = guests;
+	//	}
 
 	public Calendar getCalendar() {
 		return calendar;
@@ -147,12 +147,12 @@ public class Meeting {
 		if(this.remember == 1)
 			msjRemember = "Yes";
 		return "Meeting [id=" + id + ", name=" + name + ", dateStart=" + dateStart + ", dateEnd=" + dateEnd + ", site="
-				+ site.getName() + ", calendar=" + calendar.getName() + ", user=" + user.getName() + ", personal=" + msjPersonal + ", remember="
-				+ msjRemember + "]";
+		+ site.getName() + ", calendar=" + calendar.getName() + ", user=" + user.getName() + ", personal=" + msjPersonal + ", remember="
+		+ msjRemember + "]";
 	}
 
-	
-	
+
+
 
 
 

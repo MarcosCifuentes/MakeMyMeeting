@@ -11,26 +11,26 @@ import javax.persistence.ManyToMany;
 
 @Entity
 public class User {
-	
+
 	@Id
 	@GeneratedValue
 	private int id;
 	private String name;
 	private String lastname;
 	private String email;
-	
-	@ManyToMany(cascade=CascadeType.PERSIST)
-	private List<Meeting> invitations;
-	
+
+	//	@ManyToMany(cascade=CascadeType.PERSIST)
+	//	private List<Meeting> invitations;
+	//	
 	public User() {
-		
+
 	}
 
 	public User(String name, String lastname, String email) {
 		this.name = name;
 		this.lastname = lastname;
 		this.email = email;
-		this.setInvitations(new ArrayList<Meeting>());
+		//		this.invitations = new ArrayList<Meeting>();		
 	}
 
 	public int getId() {
@@ -65,17 +65,17 @@ public class User {
 		this.email = email;
 	}
 
-	public List<Meeting> getInvitations() {
-		return invitations;
-	}
-
-	public void setInvitations(List<Meeting> invitaciones) {
-		this.invitations = invitaciones;
-	}
+	//	public List<Meeting> getInvitations() {
+	//		return invitations;
+	//	}
+	//
+	//	public void setInvitations(List<Meeting> invitaciones) {
+	//		this.invitations = invitaciones;
+	//	}
 
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", name=" + name + ", lastname=" + lastname + ", email=" + email + "]";
 	}
-	
+
 }

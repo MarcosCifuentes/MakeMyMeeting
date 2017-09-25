@@ -1,5 +1,6 @@
 package entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -11,22 +12,19 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class Calendar {
-	
+
 	@Id
 	@GeneratedValue
 	private int id;
 	private String name;
-	
+
 	@ManyToOne(cascade=CascadeType.PERSIST)
 	private User user;
-	
-	@OneToMany(mappedBy="calendar",cascade=CascadeType.PERSIST)
-	private List<Meeting> reuniones;
-	
+
 	public Calendar() { 
-		
+
 	}
-	
+
 	public Calendar(String name, User user) {
 		this.name = name;
 		this.user = user;
@@ -55,8 +53,5 @@ public class Calendar {
 	public void setUser(User user) {
 		this.user = user;
 	}
-
-
-
 
 }

@@ -16,7 +16,7 @@ public class DAOUser {
 	private static DAOUser daoUser;
 
 	private DAOUser(){
-		
+
 	}
 
 	public static DAOUser getInstance() {
@@ -32,13 +32,13 @@ public class DAOUser {
 		em.getTransaction().commit();
 		DAOCalendar.createCalendar("default", newUser.getId(), em);
 	}
-	
+
 	public static User getUser(int idUser, EntityManager em) {
 		String jpql = "SELECT u FROM User u WHERE u.id = ?1"; 
 		Query query = em.createQuery(jpql); 
 		query.setParameter(1, idUser);
 		return (User) query.getSingleResult();
-		
+
 	}
 
 
@@ -58,7 +58,7 @@ public class DAOUser {
 		int year = cal.get(Calendar.YEAR);
 		int month = cal.get(Calendar.MONTH) + 1;			 //Meses se inicia en 0.
 		int day = cal.get(Calendar.DAY_OF_MONTH);     	
-		
+
 		String jpql = "SELECT m FROM Meeting m where (m.user.id = ?1) and extract(day from m.dateStart) = ?2"
 				+ " and extract(month from m.dateStart) = ?3"
 				+ " and extract(year from m.dateStart) = ?4"; 
@@ -68,12 +68,12 @@ public class DAOUser {
 		query.setParameter(3, month);
 		query.setParameter(4, year);
 		List<Meeting> resultados = query.getResultList(); 
-		
+
 		for(Meeting  m : resultados) { 
 			System.out.println(m.toStringName()); 
 		}
 	}
-	
+
 	public static void getMeetingsByUserBetweenDates(int idUser, Date date1, Date date2, EntityManager em) {
 		String jpql = "SELECT m FROM Meeting m where (m.user.id = ?1) and m.dateStart BETWEEN ?2 AND ?3"; 
 		Query query = em.createQuery(jpql);
@@ -86,16 +86,23 @@ public class DAOUser {
 		}
 	}
 
-	//	private boolean disponibilidadUsuario(Date fechaInicio, Date fechaFin) {
-	//	 boolean disponible= false;
-	//		
-	//		String jpql = "SELECT a FROM Alumno a"; 
-	//        Query query = entityManager.createQuery(jpql);
-	//        	if (query==null) {
-	//        	disponible=true;}
-	//		entityManager.close();
-	//		
-	//		return disponible;
-	//		
-	//	}
+	public static boolean overlap (int idUSer, Date start, Date end, EntityManager em) {
+		boolean overlap = true;
+
+		String jpql = "SELECT m FROM Meeting m WHERE m.user.id = ?1"
+				+ " AND m.dateStart <= ?2"
+				+ " AND ?2 <= m.dateEnd"
+				+ " OR m.dateStart <= ?3"
+				+ " AND ?2 <= m.dateStart)";
+		Query query = em.createQuery(jpql); 
+		query.setParameter(1, idUSer);
+		query.setParameter(2, start);
+		query.setParameter(3, end);
+		List<Meeting> results =	query.getResultList();
+		System.out.println(results);
+		if (results.isEmpty()){ 
+			overlap=false;
+		}			
+		return overlap;
+	}
 }
