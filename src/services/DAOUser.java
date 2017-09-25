@@ -56,7 +56,7 @@ public class DAOUser {
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(date);
 		int year = cal.get(Calendar.YEAR);
-		int month = cal.get(Calendar.MONTH) + 1;			 //Meses se inicia en 0.
+		int month = cal.get(Calendar.MONTH) + 1;			 //Month se inicia en 0.
 		int day = cal.get(Calendar.DAY_OF_MONTH);     	
 
 		String jpql = "SELECT m FROM Meeting m where (m.user.id = ?1) and extract(day from m.dateStart) = ?2"

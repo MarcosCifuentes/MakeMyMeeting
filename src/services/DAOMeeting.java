@@ -41,7 +41,7 @@ public class DAOMeeting {
 		em.getTransaction().commit();
 	}	
 
-	public static void getMeetingData(EntityManager em) {
+	public static void getMeetingsData(EntityManager em) {
 		String jpql = "SELECT m FROM Meeting m"; 
 		Query query = em.createQuery(jpql); 
 		List<Meeting> resultados = query.getResultList();

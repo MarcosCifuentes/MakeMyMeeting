@@ -22,12 +22,13 @@ public class MyApp {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("makemymeeting");
 		EntityManager em = emf.createEntityManager();
 
+		//		g)
 		MyApp.restoreDB(em);
 
 		DAOSite.createSite("Sala nro 1", "san martin 154", em);
 		DAOSite.createSite("Sala nro 2", "pinto 959", em);
 
-
+		//		b)
 		DAOUser.createUser(em, "Marcelo", "Rodriguez","marcelo@gmail.com" );
 		DAOUser.createUser(em,"Mateo", "Darin", "mateo@gmail.com");
 		DAOUser.createUser(em,"Lionel", "Messi", "lionel@gmail.com");
@@ -38,7 +39,8 @@ public class MyApp {
 		DAOUser.createUser(em, "Susana", "Gimenez","susana@gmail.com" );
 		DAOUser.createUser(em, "Julio", "Iglesias","julio@gmail.com" );
 		DAOUser.createUser(em, "Martin", "Casas","martin@gmail.com" );
-
+		
+		//		b)
 		DAOCalendar.createCalendar("Escolar", 3, em);
 		DAOCalendar.createCalendar("Municipal", 5, em);
 		DAOCalendar.createCalendar("Juegos", 3, em);
@@ -47,6 +49,7 @@ public class MyApp {
 		DAOCalendar.createCalendar("Viajes", 9, em);
 		DAOCalendar.createCalendar("Museos", 11, em);
 
+		//		d)
 		Date m1Start = new GregorianCalendar(2017, Calendar.SEPTEMBER, 19, 12, 00).getTime();
 		Date m1End = new GregorianCalendar(2017, Calendar.SEPTEMBER, 19, 14, 00).getTime();		
 		DAOMeeting.createMeeting("Peña",m1Start,m1End, 1, 4, 3, em);
@@ -97,24 +100,31 @@ public class MyApp {
 		DAOMeeting.createMeeting("Navidad",m10Start,m10End, 2,6,21, em);
 
 		//		c)I)
+		System.out.println("Datos del Usuario");
 		DAOUser.getUserData(3, em);
 
 		//		c)II)
+		System.out.println("Reuniones del usuario en el dia");
 		DAOUser.getMeetingsByUserAndDay(3, m1Start, em);
 
 		//		c)III)
+		System.out.println("Reuniones del Usuario entre fechas");
 		Date dateTest1 = new GregorianCalendar(2017, Calendar.SEPTEMBER, 19, 00, 00).getTime();
 		Date dateTest2 = new GregorianCalendar(2017, Calendar.SEPTEMBER, 20, 00, 00).getTime();
 		DAOUser.getMeetingsByUserBetweenDates(3, dateTest1, dateTest2, em);
 
 		//		c)IV)
+		System.out.println("Reuniones superpuestas con la nueva reunion");
 		Date dateOverlapS = new GregorianCalendar(2017, Calendar.SEPTEMBER, 19, 00, 00).getTime();
 		Date dateOverlapE = new GregorianCalendar(2017, Calendar.SEPTEMBER, 20, 00, 00).getTime();
 		DAOMeeting.createMeeting("Overlap",dateOverlapS,dateOverlapE, 1, 4, 3, em);
 		DAOMeeting.getOverlapMeetings(3, 40, em);
 
 		//		e)
-		//		DAOMeeting.getMeetingData(em);
+		System.out.println("Datos de las Reuniones");
+				DAOMeeting.getMeetingsData(em);
+				
+		//		f) Realizado en el ejercicio c)III)
 
 		em.close();
 		emf.close();
