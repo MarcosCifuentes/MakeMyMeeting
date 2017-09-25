@@ -30,14 +30,14 @@ public class DAOMeeting {
 		User user = DAOUser.getUser(idUser, em);
 		Site site = DAOSite.getSite(idSite, em);
 		Calendar calendar = DAOCalendar.getCalendar(idCalendar, em);
-		if (!DAOSite.overlap(idSite, dateStart, dateEnd, em)) {
-			if (!DAOUser.overlap(idUser, dateStart, dateEnd, em)) {
+//		if (!DAOSite.overlap(idSite, dateStart, dateEnd, em)) {     comentamos esta parte par poder realizar la funcionalidad c)IV)
+//			if (!DAOUser.overlap(idUser, dateStart, dateEnd, em)) { ya que con ella evitamos superposiciones de reuniones
 				Meeting newMeeting = new Meeting (name, dateStart, dateEnd, site, calendar, user, 0, 0);
 				em.persist(newMeeting);
-			}
-			else System.out.println("The meeting "+name+ " overlaps with other meeting of the user " +user.getName()+", cannot create meeting");
-		}
-		else System.out.println("The meeting "+name+ " overlaps with other meeting on the site "+site.getName()+", cannot create meeting");
+//			}
+//			else System.out.println("The meeting "+name+ " overlaps with other meeting of the user " +user.getName()+", cannot create meeting");
+//		}
+//		else System.out.println("The meeting "+name+ " overlaps with other meeting on the site "+site.getName()+", cannot create meeting");
 		em.getTransaction().commit();
 	}	
 
@@ -53,8 +53,8 @@ public class DAOMeeting {
 
 	public static void getOverlapMeetings(int idUser, int idMeeting, EntityManager em) {
 		String jpql = "SELECT m FROM Meeting m JOIN Meeting m2 ON (m2.id = ?1)"
-				+ "WHERE (m.user.id = ?2"
-				+ " AND m.dateStart <= m2.dateStart"
+				+ "WHERE m.user.id = ?2"
+				+ " AND (m.dateStart <= m2.dateStart"
 				+ " AND m2.dateStart <= m.dateEnd"
 				+ " OR m.dateStart <= m2.dateEnd"
 				+ " AND m2.dateStart <= m.dateStart)"

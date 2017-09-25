@@ -24,9 +24,6 @@ public class Meeting {
 	@ManyToOne(cascade=CascadeType.PERSIST)
 	private Site site;
 
-	//	@ManyToMany(cascade=CascadeType.PERSIST)
-	//	private List<User> guests;
-
 	@ManyToOne(cascade=CascadeType.PERSIST)
 	private Calendar calendar;
 
@@ -45,7 +42,6 @@ public class Meeting {
 		this.dateStart = dateStart;
 		this.dateEnd = dateEnd;
 		this.site = site;
-		//		this.guests = new ArrayList <User> ();
 		this.calendar = calendar;
 		this.user = user;
 		this.personal = personal;
@@ -93,14 +89,6 @@ public class Meeting {
 	public void setSite(Site site) {
 		this.site = site;
 	}
-
-	//	public List<User> getGuests() {
-	//		return guests;
-	//	}
-	//
-	//	public void setGuests(List<User> guests) {
-	//		this.guests = guests;
-	//	}
 
 	public Calendar getCalendar() {
 		return calendar;

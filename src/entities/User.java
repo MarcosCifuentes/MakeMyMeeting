@@ -19,9 +19,6 @@ public class User {
 	private String lastname;
 	private String email;
 
-	//	@ManyToMany(cascade=CascadeType.PERSIST)
-	//	private List<Meeting> invitations;
-	//	
 	public User() {
 
 	}
@@ -64,14 +61,6 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-	//	public List<Meeting> getInvitations() {
-	//		return invitations;
-	//	}
-	//
-	//	public void setInvitations(List<Meeting> invitaciones) {
-	//		this.invitations = invitaciones;
-	//	}
 
 	@Override
 	public String toString() {

@@ -8,14 +8,13 @@ import javax.persistence.*;
 
 public class MyApp {
 
-	public static void restaurarBD(EntityManager em) {
+	public static void restoreDB(EntityManager em) {
 		em.getTransaction( ).begin( );
 		em.createQuery("DELETE FROM Meeting").executeUpdate();
 		em.createQuery("DELETE FROM Site").executeUpdate();
 		em.createQuery("DELETE FROM Calendar").executeUpdate();
 		em.createQuery("DELETE FROM User").executeUpdate();
 		em.getTransaction().commit();
-
 	}
 
 	public static void main(String[] args) {
@@ -23,7 +22,7 @@ public class MyApp {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("makemymeeting");
 		EntityManager em = emf.createEntityManager();
 
-		MyApp.restaurarBD(em);
+		MyApp.restoreDB(em);
 
 		DAOSite.createSite("Sala nro 1", "san martin 154", em);
 		DAOSite.createSite("Sala nro 2", "pinto 959", em);
@@ -111,13 +110,11 @@ public class MyApp {
 		//		c)IV)
 		Date dateOverlapS = new GregorianCalendar(2017, Calendar.SEPTEMBER, 19, 00, 00).getTime();
 		Date dateOverlapE = new GregorianCalendar(2017, Calendar.SEPTEMBER, 20, 00, 00).getTime();
-		DAOMeeting.createMeeting("Overlap",dateOverlapS,dateOverlapE, 2, 4, 3, em);
-		DAOMeeting.getOverlapMeetings(3, 12, em);
+		DAOMeeting.createMeeting("Overlap",dateOverlapS,dateOverlapE, 1, 4, 3, em);
+		DAOMeeting.getOverlapMeetings(3, 40, em);
 
 		//		e)
 		//		DAOMeeting.getMeetingData(em);
-
-		//		MyApp.restaurarBD(em);
 
 		em.close();
 		emf.close();

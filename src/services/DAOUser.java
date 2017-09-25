@@ -86,23 +86,23 @@ public class DAOUser {
 		}
 	}
 
-	public static boolean overlap (int idUSer, Date start, Date end, EntityManager em) {
-		boolean overlap = true;
-
-		String jpql = "SELECT m FROM Meeting m WHERE m.user.id = ?1"
-				+ " AND m.dateStart <= ?2"
-				+ " AND ?2 <= m.dateEnd"
-				+ " OR m.dateStart <= ?3"
-				+ " AND ?2 <= m.dateStart)";
-		Query query = em.createQuery(jpql); 
-		query.setParameter(1, idUSer);
-		query.setParameter(2, start);
-		query.setParameter(3, end);
-		List<Meeting> results =	query.getResultList();
-		System.out.println(results);
-		if (results.isEmpty()){ 
-			overlap=false;
-		}			
-		return overlap;
-	}
+//	public static boolean overlap (int idUSer, Date start, Date end, EntityManager em) {
+//		boolean overlap = true;
+//
+//		String jpql = "SELECT m FROM Meeting m WHERE m.user.id = ?1"
+//				+ " AND m.dateStart <= ?2"
+//				+ " AND ?2 <= m.dateEnd"
+//				+ " OR m.dateStart <= ?3"
+//				+ " AND ?2 <= m.dateStart)";
+//		Query query = em.createQuery(jpql); 
+//		query.setParameter(1, idUSer);
+//		query.setParameter(2, start);
+//		query.setParameter(3, end);
+//		List<Meeting> results =	query.getResultList();
+//		System.out.println(results);
+//		if (results.isEmpty()){ 
+//			overlap=false;
+//		}			
+//		return overlap;
+//	}
 }
