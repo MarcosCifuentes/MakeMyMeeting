@@ -22,14 +22,14 @@ public class DAOSite {
 		return daoSite;
 	}
 
-	public static void createSite(String name, String address, EntityManager em) {
+	public void createSite(String name, String address, EntityManager em) {
 		em.getTransaction( ).begin( );
 		Site newSite = new Site (name, address);
 		em.persist(newSite);
 		em.getTransaction().commit();
 	}
 
-	public static Site getSite(int idSite, EntityManager em) {
+	public Site getSite(int idSite, EntityManager em) {
 		String jpql = "SELECT s FROM Site s WHERE s.id = ?1"; 
 		Query query = em.createQuery(jpql); 
 		query.setParameter(1, idSite);
@@ -37,7 +37,7 @@ public class DAOSite {
 
 	}
 
-	public static boolean overlap (int idSite, Date start, Date end, EntityManager em) {
+	public boolean overlap (int idSite, Date start, Date end, EntityManager em) {
 		boolean overlap = true;
 
 		String jpql = "SELECT m FROM Meeting m WHERE m.site.id = ?1"

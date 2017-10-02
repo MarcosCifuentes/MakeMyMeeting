@@ -25,15 +25,15 @@ public class DAOUser {
 		return daoUser;
 	}
 
-	public static void createUser(EntityManager em, String name, String lastName, String email) {
+	public void createUser(EntityManager em, String name, String lastName, String email) {
 		em.getTransaction( ).begin( );	
 		User newUser = new User(name,lastName,email);
 		em.persist(newUser);
 		em.getTransaction().commit();
-		DAOCalendar.createCalendar("default", newUser.getId(), em);
+		DAOCalendar.getInstance().createCalendar("default", newUser.getId(), em);
 	}
 
-	public static User getUser(int idUser, EntityManager em) {
+	public User getUser(int idUser, EntityManager em) {
 		String jpql = "SELECT u FROM User u WHERE u.id = ?1"; 
 		Query query = em.createQuery(jpql); 
 		query.setParameter(1, idUser);
@@ -42,7 +42,7 @@ public class DAOUser {
 	}
 
 
-	public static void getUserData(int idUser, EntityManager em) {
+	public void getUserData(int idUser, EntityManager em) {
 		em.getTransaction( ).begin( );
 		String jpql = "SELECT u FROM User u WHERE u.id = ?1"; 
 		Query query = em.createQuery(jpql); 
@@ -52,7 +52,7 @@ public class DAOUser {
 		em.getTransaction().commit();
 	}
 
-	public static void getMeetingsByUserAndDay(int idUser, Date date, EntityManager em) {
+	public void getMeetingsByUserAndDay(int idUser, Date date, EntityManager em) {
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(date);
 		int year = cal.get(Calendar.YEAR);
@@ -74,7 +74,7 @@ public class DAOUser {
 		}
 	}
 
-	public static void getMeetingsByUserBetweenDates(int idUser, Date date1, Date date2, EntityManager em) {
+	public void getMeetingsByUserBetweenDates(int idUser, Date date1, Date date2, EntityManager em) {
 		String jpql = "SELECT m FROM Meeting m where (m.user.id = ?1) and m.dateStart BETWEEN ?2 AND ?3"; 
 		Query query = em.createQuery(jpql);
 		query.setParameter(1, idUser);
@@ -86,7 +86,7 @@ public class DAOUser {
 		}
 	}
 
-//	public static boolean overlap (int idUSer, Date start, Date end, EntityManager em) {
+//	public boolean overlap (int idUSer, Date start, Date end, EntityManager em) {
 //		boolean overlap = true;
 //
 //		String jpql = "SELECT m FROM Meeting m WHERE m.user.id = ?1"
